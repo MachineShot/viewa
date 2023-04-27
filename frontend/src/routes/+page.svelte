@@ -1,2 +1,20 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+	import Icon from '@iconify/svelte';
+</script>
+
+<svelte:head>
+	<title>Viewa</title>
+</svelte:head>
+
+<hgroup>
+	<h1>Viewa</h1>
+	<h2>For your next</h2>
+	<h3>Movie date, family night, party...</h3>
+</hgroup>
+
+<a href="/recommendation">
+	<button>
+		<Icon icon="material-symbols:recommend" />
+		Get Recommendations
+	</button>
+</a>
