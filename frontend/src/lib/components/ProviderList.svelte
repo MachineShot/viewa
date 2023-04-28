@@ -35,6 +35,7 @@
 	}
 	.providers ul li a {
 		text-decoration: none;
-		padding-right: 15px;
+		display: block;
+		margin-right: 15px;
 	}
 </style>

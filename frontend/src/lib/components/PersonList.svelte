@@ -26,7 +26,7 @@
 							<h2>{person.name}</h2>
 						</a>
 					</div>
-					<p>
+					<p class="known">
 						<span>{person.known_for_department}</span>
 						{#each person.known_for as movie, i}
 							{#if movie.media_type == 'movie'}
@@ -90,7 +90,11 @@
 		margin: 0;
 	}
 
-	p a {
-		margin-right: 10px;
+	.known a {
+		display: block;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		width: fit-content;
 	}
 </style>

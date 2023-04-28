@@ -1,5 +1,8 @@
 <script>
+	import MovieCarousel from '$lib/components/MovieCarousel.svelte';
 	import Icon from '@iconify/svelte';
+
+	export let data;
 </script>
 
 <svelte:head>
@@ -8,8 +11,7 @@
 
 <hgroup>
 	<h1>Viewa</h1>
-	<h2>For your next</h2>
-	<h3>Movie date, family night, party...</h3>
+	<h3>For your next movie date, family night, party...</h3>
 </hgroup>
 
 <a href="/recommendation">
@@ -18,3 +20,8 @@
 		Get Recommendations
 	</button>
 </a>
+
+<MovieCarousel title="Popular Movies" content={data.list_popular.results} />
+<MovieCarousel title="Top Rated Movies" content={data.list_top.results} />
+<MovieCarousel title="Now Playing" content={data.list_playing.results} />
+<MovieCarousel title="Upcoming Movies" content={data.list_upcoming.results} />
