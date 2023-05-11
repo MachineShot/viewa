@@ -9,6 +9,7 @@ export const actions = {
 	recommend: async ({ fetch, request }) => {
 		const formData = await request.formData();
 		const selection = JSON.parse(String(formData.get('selection')));
+		const method = String(formData.get('method'));
 		if (selection != null) {
 			const movieTitles = selection.map((movie: any) => movie.title);
 
@@ -17,23 +18,21 @@ export const actions = {
 			};
 
 			// Send a POST request with the JSON data
-			const postSelection = await fetch(
-				'http://machineshot.eu.pythonanywhere.com/recommendations',
-				{
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					body: JSON.stringify(result)
-				}
-			);
+			const postSelection = await fetch(`http://machineshot.eu.pythonanywhere.com/${method}`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(result)
+			});
 
 			// Get the response data as JSON
 			const recommendations = await postSelection.json();
+			console.log(recommendations);
 			const urls: string[] = [];
 
-			recommendations.recommendations.forEach((rec: any) => {
-				const url = `https://api.themoviedb.org/3/movie/${rec.id}?api_key=${SECRET_API_KEY}`;
+			recommendations.forEach((rec: any) => {
+				const url = `https://api.themoviedb.org/3/movie/${rec.tmdbId}?api_key=${SECRET_API_KEY}`;
 				urls.push(url);
 			});
 

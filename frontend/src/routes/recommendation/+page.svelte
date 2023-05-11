@@ -35,6 +35,20 @@
 	/>
 	<form method="POST" action="?/recommend" use:enhance={handleSubmit}>
 		<input type="hidden" name="selection" value={JSON.stringify(selection)} />
+		<fieldset>
+			<legend>Please select your preferred recommendation method:</legend>
+			<div>
+				<input type="radio" id="content" name="method" value="content" checked />
+				<label data-tooltip="Recommendations based on movie content e.g. genre" for="content"
+					>Content-Based</label
+				>
+				<input type="radio" id="collaborative" name="method" value="collaborative" />
+				<label
+					data-tooltip="Recommendations based on similarities between user ratings and movies"
+					for="collaborative">Collaborative Filtering</label
+				>
+			</div>
+		</fieldset>
 		<button aria-busy={loading}>Get Recommendations</button>
 	</form>
 	{#if form?.results}

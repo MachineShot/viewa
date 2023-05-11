@@ -25,9 +25,27 @@
 	<section>
 		<div class="grid">
 			{#if loggedIn}
-				<button>Add to Watched</button>
+				{#if data.watched?.length == 0}
+					<form action="?/addWatched" method="post" use:enhance>
+						<button value="watched">Add as Watched</button>
+					</form>
+				{:else}
+					<form action="?/removeWatched" method="post" use:enhance>
+						<button value="watched">Remove from Watched</button>
+					</form>
+				{/if}
+				{#if data.toWatch?.length == 0}
+					<form action="?/addToWatch" method="post" use:enhance>
+						<button value="toWatch">Add To Watch</button>
+					</form>
+				{:else}
+					<form action="?/removeToWatch" method="post" use:enhance>
+						<button value="toWatch">Remove from To Watch</button>
+					</form>
+				{/if}
 			{:else}
-				<button data-tooltip="You have to be logged in">Add to Watched</button>
+				<button data-tooltip="You have to be logged in">Add as Watched</button>
+				<button data-tooltip="You have to be logged in">Add to Watch</button>
 			{/if}
 			<a href="/recommendation/{$page.params.id}-{data.movieDetails.title}"
 				><button>More movies like this</button></a
