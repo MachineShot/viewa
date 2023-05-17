@@ -7,14 +7,10 @@ export const actions: Actions = {
 		request,
 		url,
 		locals: { supabase }
-	}): Promise<
-		| ActionFailure<{ error: string; values?: { email: string; username: string } }>
-		| { message: string }
-	> {
+	}): Promise<ActionFailure<{ error: string; values?: { email: string } }> | { message: string }> {
 		const formData = await request.formData();
 
 		const email = formData.get('email') as string;
-		const username = formData.get('username') as string;
 		const password = formData.get('password') as string;
 
 		if (!email) {
@@ -22,41 +18,27 @@ export const actions: Actions = {
 				error: 'Please enter your email'
 			});
 		}
-		if (!username) {
-			return fail(400, {
-				error: 'Please enter your username'
-			});
-		}
 		if (!password) {
 			return fail(400, {
 				error: 'Please enter a password',
 				values: {
-					email,
-					username
+					email
 				}
 			});
 		}
 
-		const { error } = await supabase.auth.signUp(
-			{
-				email,
-				password,
-				options: { emailRedirectTo: url.origin }
-			},
-			{
-				data: {
-					username: username
-				}
-			}
-		);
+		const { error } = await supabase.auth.signUp({
+			email,
+			password,
+			options: { emailRedirectTo: url.origin }
+		});
 
 		if (error) {
 			if (error instanceof AuthApiError && error.status === 400) {
 				return fail(400, {
 					error: 'Invalid credentials.',
 					values: {
-						email,
-						username
+						email
 					}
 				});
 			}
@@ -64,8 +46,7 @@ export const actions: Actions = {
 			return fail(500, {
 				error: 'Server error. Try again later.',
 				values: {
-					email,
-					username
+					email
 				}
 			});
 		}

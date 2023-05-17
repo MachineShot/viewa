@@ -38,19 +38,6 @@
 		</p>
 	</div>
 	<div>
-		<label for="username">Username</label>
-		<p>
-			<input
-				id="username"
-				name="username"
-				value={form?.values?.username ?? ''}
-				type="text"
-				placeholder="Username"
-				required
-			/>
-		</p>
-	</div>
-	<div>
 		<label for="password">Password</label>
 		<p>
 			<input id="password" name="password" type="password" placeholder="Password" required />
