@@ -31,7 +31,7 @@
 		max="3"
 		placeholder="Start typing ('Toy Story' for example)"
 		bind:value={selection}
-		fetch="http://machineshot.eu.pythonanywhere.com/search=[query]"
+		fetch="https://machineshot.eu.pythonanywhere.com/search=[query]"
 	/>
 	<form method="POST" action="?/recommend" use:enhance={handleSubmit}>
 		<input type="hidden" name="selection" value={JSON.stringify(selection)} />

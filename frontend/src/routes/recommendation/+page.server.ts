@@ -18,7 +18,7 @@ export const actions = {
 			};
 
 			// Send a POST request with the JSON data
-			const postSelection = await fetch(`http://machineshot.eu.pythonanywhere.com/${method}`, {
+			const postSelection = await fetch(`https://machineshot.eu.pythonanywhere.com/${method}`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
