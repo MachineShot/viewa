@@ -3,15 +3,6 @@
 	import type { PageData } from './$types';
 
 	export let data: PageData;
-
-	let page = 1;
-	const limit = 10;
-
-	async function loadMore() {
-		const newMovies = await getPosts({ page: page + 1, limit: limit });
-		data.movies.results = [...data.movies.results, ...newMovies];
-		page++;
-	}
 </script>
 
 <svelte:head>

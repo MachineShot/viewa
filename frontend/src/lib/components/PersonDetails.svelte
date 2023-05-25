@@ -1,8 +1,9 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
 	import MovieCarousel from './MovieCarousel.svelte';
+	import type { IPersonDetails } from '$lib/types/movie';
 
-	export let details: any[];
+	export let details: IPersonDetails;
 </script>
 
 <main>
