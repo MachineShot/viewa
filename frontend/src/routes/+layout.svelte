@@ -4,6 +4,7 @@
 	import Icon from '@iconify/svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import logo from '$lib/assets/logo.svg';
+	import logo_mobile from '$lib/assets/logo_mobile.svg';
 
 	export let data;
 	let searchText = '';
@@ -21,7 +22,7 @@
 	});
 </script>
 
-<nav class="container-fluid">
+<nav class="container-fluid desktop">
 	<ul>
 		<li>
 			<div class="logo">
@@ -74,6 +75,55 @@
 	</ul>
 </nav>
 
+<nav class="container-fluid mobile">
+	<ul>
+		<li>
+			<div class="logo-mobile">
+				<a href="/" class="contrast">
+					<img src={logo_mobile} alt="Viewa logo" />
+				</a>
+			</div>
+		</li>
+	</ul>
+	<ul>
+		<li>
+			<form action="/search/movies">
+				<label for="search">
+					<input
+						type="search"
+						id="search"
+						name="q"
+						placeholder="Search"
+						minlength="3"
+						required
+						bind:value={searchText}
+					/>
+				</label>
+			</form>
+		</li>
+		<li>
+			<a data-tooltip="Movies" data-placement="bottom" href="/movies">
+				<Icon icon="mdi:movie-open" />
+			</a>
+		</li>
+		<li>
+			<a data-tooltip="Recommendations" data-placement="bottom" href="/recommendation">
+				<Icon icon="material-symbols:recommend" />
+			</a>
+		</li>
+		<li>
+			<a data-tooltip="People" data-placement="bottom" href="/people">
+				<Icon icon="material-symbols:recent-actors" />
+			</a>
+		</li>
+		<li>
+			<a data-tooltip="Account" data-placement="bottom" href="/account">
+				<Icon icon="material-symbols:person" />
+			</a>
+		</li>
+	</ul>
+</nav>
+
 <div class="container">
 	<slot />
 
@@ -105,5 +155,22 @@
 	.logo {
 		min-width: 180px;
 		width: 300px;
+	}
+
+	.mobile {
+		visibility: hidden;
+	}
+
+	@media only screen and (max-width: 768px) {
+		.desktop {
+			visibility: hidden;
+		}
+		.mobile {
+			visibility: visible;
+		}
+
+		.logo-mobile {
+			width: 50px;
+		}
 	}
 </style>
